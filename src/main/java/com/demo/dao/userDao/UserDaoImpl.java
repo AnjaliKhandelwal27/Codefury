@@ -30,4 +30,10 @@ public class UserDaoImpl implements UserDao{
 		return null;
 	}
 
+	@Override
+	public User[] getAllUsers() throws UserNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

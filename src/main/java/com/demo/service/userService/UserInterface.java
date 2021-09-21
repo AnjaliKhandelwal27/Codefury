@@ -14,6 +14,9 @@ public interface UserInterface {
 	public int uploadArrayOfUsers(User[]users);
 	// method to get user by id
 	public User getUserById(int id) throws UserNotFoundException;
+	// method to get all users
+	public User[] getAllUsers() throws UserNotFoundException;
+	
 	
 	
 

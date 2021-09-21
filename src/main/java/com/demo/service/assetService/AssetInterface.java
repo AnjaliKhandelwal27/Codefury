@@ -24,4 +24,12 @@ public interface AssetInterface {
 	// method that will take user and Asset data as an input and issue an asset
 	public int issueAsset(User user,Asset asset) throws AssetNotFoundException;
 	
+	// method to getAllAssets 
+	public Asset[] getAllAssets();
+	
+	// method that enable admin to add an asset
+	public int AddAssetAdmin(Asset a);
+	
+	
+	
 }

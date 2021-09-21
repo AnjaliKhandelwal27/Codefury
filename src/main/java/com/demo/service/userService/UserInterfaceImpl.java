@@ -37,4 +37,10 @@ public class UserInterfaceImpl implements UserInterface {
 		return user;
 	}
 
+	@Override
+	public User[] getAllUsers() throws UserNotFoundException {
+		User[]users=dao.getAllUsers();
+		return users;
+	}
+
 }

@@ -38,4 +38,16 @@ public class AsssetDaoImpl implements AssetDao {
 		return 0;
 	}
 
+	@Override
+	public Asset[] getAllAssets() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int AddAssetAdmin(Asset a) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

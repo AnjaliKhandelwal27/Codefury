@@ -45,4 +45,16 @@ public class AssetInterfaceImpl implements AssetInterface {
 		int status=dao.issueAsset(user, asset);
 		return status;
 	}
+
+	@Override
+	public Asset[] getAllAssets() {
+		Asset[] assets=dao.getAllAssets();
+		return assets;
+	}
+
+	@Override
+	public int AddAssetAdmin(Asset a) {
+		int status=dao.AddAssetAdmin(a);
+		return status;
+	}
 }
