@@ -1,63 +1,132 @@
 package com.demo.beans;
 
-import java.sql.Date;
-
 public class Asset {
-	private int assetId;
-	private String name;
-	private String category;
-	private String description;
-	private Date date;
-	private boolean isAvailable;
-	public int getAssetId() {
-		return assetId;
+	
+	
+	private String assetName , assetType ,assetDescription;
+	private String assetDateAdded;
+	private int assetAvailable ,assetLendingPeriod;
+	private float assetLateReturnFee ;
+	private int assetBannedDays;
+	
+	
+	public Asset() {
+		
 	}
-	public void setAssetId(int assetId) {
-		this.assetId = assetId;
+
+
+	public Asset( String assetName, String assetType, String assetDescription, String assetDateAdded,
+			int assetAvailable, int assetLendingPeriod, float assetLateReturnFee, int assetBannedDays) {
+		
+		
+		this.assetName = assetName;
+		this.assetType = assetType;
+		this.assetDescription = assetDescription;
+		this.assetDateAdded = assetDateAdded;
+		this.assetAvailable = assetAvailable;
+		this.assetLendingPeriod = assetLendingPeriod;
+		this.assetLateReturnFee = assetLateReturnFee;
+		this.assetBannedDays = assetBannedDays;
 	}
-	public String getName() {
-		return name;
+
+
+	
+
+
+	
+
+
+	public String getAssetName() {
+		return assetName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setAssetName(String assetName) {
+		this.assetName = assetName;
 	}
-	public String getCategory() {
-		return category;
+
+
+	public String getAssetType() {
+		return assetType;
 	}
+
+
+	public void setAssetType(String assetType) {
+		this.assetType = assetType;
+	}
+
+
+	public String getAssetDescription() {
+		return assetDescription;
+	}
+
+
+	public void setAssetDescription(String assetDescription) {
+		this.assetDescription = assetDescription;
+	}
+
+
+	public String getAssetDateAdded() {
+		return assetDateAdded;
+	}
+
+
+	public void setAssetDateAdded(String assetDateAdded) {
+		this.assetDateAdded = assetDateAdded;
+	}
+
+
+	public int getAssetAvailable() {
+		return assetAvailable;
+	}
+
+
+	public void setAssetAvailable(int assetAvailable) {
+		this.assetAvailable = assetAvailable;
+	}
+
+
+	public int getAssetLendingPeriod() {
+		return assetLendingPeriod;
+	}
+
+
+	public void setAssetLendingPeriod(int assetLendingPeriod) {
+		this.assetLendingPeriod = assetLendingPeriod;
+	}
+
+
+	public float getAssetLateReturnFee() {
+		return assetLateReturnFee;
+	}
+
+
+	public void setAssetLateReturnFee(float assetLateReturnFee) {
+		this.assetLateReturnFee = assetLateReturnFee;
+	}
+
+
+	public int getAssetBannedDays() {
+		return assetBannedDays;
+	}
+
+
+	public void setAssetBannedDays(int assetBannedDays) {
+		this.assetBannedDays = assetBannedDays;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Asset [assetId=" + assetId + ", name=" + name + ", category=" + category + ", description="
-				+ description + ", date=" + date + ", isAvailable=" + isAvailable + "]";
+		return "Asset [ assetName=" + assetName + ", assetType=" + assetType
+				+ ", assetDescription=" + assetDescription + ", assetDateAdded=" + assetDateAdded + ", assetAvailable="
+				+ assetAvailable + ", assetLendingPeriod=" + assetLendingPeriod + ", assetLateReturnFee="
+				+ assetLateReturnFee + ", assetBannedDays=" + assetBannedDays + "]";
 	}
-	public Asset(int assetId, String name, String category, String description, Date date, boolean isAvailable) {
-		super();
-		this.assetId = assetId;
-		this.name = name;
-		this.category = category;
-		this.description = description;
-		this.date = date;
-		this.isAvailable = isAvailable;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public boolean isAvailable() {
-		return isAvailable;
-	}
-	public void setAvailable(boolean isAvailable) {
-		this.isAvailable = isAvailable;
-	}
+	
+	
+	
+	
 
 }
+
