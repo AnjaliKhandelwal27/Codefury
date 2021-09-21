@@ -2,61 +2,81 @@ package com.demo.beans;
 
 public class User {
 	private int userId;
-	private String name;
-	private String role;
-	private int contactNumber;
-	private String email;
-	private String password;
+	private String userName;
+	private String userRole;
+	private String userTelephone;
+	private String userEmail;
+	private String userPassword;
+
+	public User(String userName, String userRole, String userTelephone, String userEmail, String userPassword) {
+		this.userName = userName;
+		this.userRole = userRole;
+		this.userTelephone = userTelephone;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+	}
+
+	public User(int id, String userName, String userRole, String userTelephone, String userEmail, String userPassword) {
+		this.userId = id;
+		this.userName = userName;
+		this.userRole = userRole;
+		this.userTelephone = userTelephone;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getName() {
-		return name;
+
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getRole() {
-		return role;
+
+	public String getUserRole() {
+		return userRole;
 	}
-	public void setRole(String role) {
-		this.role = role;
+
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
 	}
-	public int getContactNumber() {
-		return contactNumber;
+
+	public String getUserTelephone() {
+		return userTelephone;
 	}
-	public void setContactNumber(int contactNumber) {
-		this.contactNumber = contactNumber;
+
+	public void setUserTelephone(String userTelephone) {
+		this.userTelephone = userTelephone;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
+
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", role=" + role + ", contactNumber=" + contactNumber
-				+ ", email=" + email + ", password=" + password + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", userRole=" + userRole + ", userTelephone="
+				+ userTelephone + ", userEmail=" + userEmail + ", userPassword=" + userPassword + "]";
 	}
-	public User(int userId, String name, String role, int contactNumber, String email, String password) {
-		super();
-		this.userId = userId;
-		this.name = name;
-		this.role = role;
-		this.contactNumber = contactNumber;
-		this.email = email;
-		this.password = password;
-	}
-	
 
 }

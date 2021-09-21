@@ -1,16 +1,17 @@
 package com.demo.exceptions.userExceptions;
 
-public class UserNotFoundException extends Exception {
+public class EmailAlreadyExistsException extends Exception {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public UserNotFoundException() {
+	public EmailAlreadyExistsException() {
 		super();
 	}
 
-	public UserNotFoundException(String message) {
+	public EmailAlreadyExistsException(String message) {
 		super(message);
 	}
 
