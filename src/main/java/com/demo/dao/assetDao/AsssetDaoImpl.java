@@ -9,7 +9,7 @@ import com.demo.exceptions.assetExceptions.AssetNotFoundException;
 public class AsssetDaoImpl implements AssetDao {
 
 	@Override
-	public int addAsset(Asset a) {
+	public void addAsset(Asset a) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -21,33 +21,29 @@ public class AsssetDaoImpl implements AssetDao {
 	}
 
 	@Override
-	public Asset searchAssetByDate(Date date) throws AssetNotFoundException {
+	public List<Asset> searchAssetByDate(Date date) throws AssetNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Asset searchAssetByCategory(String category) throws AssetNotFoundException {
+	public  List<Asset> searchAssetByCategory(String category) throws AssetNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+	@Override
+	public List<Asset> getAllAssets() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int issueAsset(User user, Asset asset) throws AssetNotFoundException {
+	public void updateAsset(Asset a){
 		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Asset[] getAllAssets() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int AddAssetAdmin(Asset a) {
-		// TODO Auto-generated method stub
-		return 0;
+	
 	}
 
 }
