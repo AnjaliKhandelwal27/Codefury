@@ -13,6 +13,9 @@ public interface BorrowDao {
 		
 		// method to get borrower by id
 		public User getBorrowerById(int id) throws BorrowerNotFoundException;
+	
+		// method that will take user and Asset data as an input and issue an asset
+		public int issueAsset(User user,Asset asset) throws AssetNotAvailableException;
 	  
 		// method to get borrower by name
 		public User getBorowerByName(String name) throws BorrowerNotFoundException;
