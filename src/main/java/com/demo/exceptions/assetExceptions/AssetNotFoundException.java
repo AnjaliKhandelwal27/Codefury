@@ -6,4 +6,8 @@ public class AssetNotFoundException extends Exception {
 		super(message);
 	}
 
+	public AssetNotFoundException() {
+		super();
+		
+	}
 }
