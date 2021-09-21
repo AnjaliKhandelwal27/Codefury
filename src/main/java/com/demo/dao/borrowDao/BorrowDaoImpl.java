@@ -18,6 +18,9 @@ public class BorrowDaoImpl implements BorrowDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	// method that will take user and Asset data as an input and issue an asset
+  	public int issueAsset(User user,Asset asset) throws AssetNotAvailableException;
 
 	@Override
 	public User getBorowerByName(String name) throws BorrowerNotFoundException {
