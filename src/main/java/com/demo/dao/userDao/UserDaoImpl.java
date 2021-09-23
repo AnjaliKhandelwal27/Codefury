@@ -2,9 +2,12 @@ package com.demo.dao.userDao;
 
 import java.io.FileReader;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +61,9 @@ public class UserDaoImpl implements UserDao {
 			while (rs.next()) {
 				user = new User(rs.getInt("userId"), rs.getString("userName"), rs.getString("userRole"),
 						rs.getString("userTelephone"), rs.getString("userEmail"), rs.getString("userPassword"));
+				if (user.getUserEmail().equals(email) && user.getUserPassword().equals(pswd)) {
+					updateUserLoginDateTime(user);
+				}
 			}
 		} catch (SQLException e) {
 			throw new UserNotFoundException("No such user found !");
@@ -150,4 +156,36 @@ public class UserDaoImpl implements UserDao {
 		return per;
 	}
 
+	private void updateUserLoginDateTime(User per) throws UserNotFoundException {
+
+		try {
+			Connection conn = DBUtil.getConnConnection();
+
+			String getCount = "select * from user where userId = " + per.getUserId();
+			PreparedStatement pst_temp = conn.prepareStatement(getCount);
+			ResultSet rs = pst_temp.executeQuery();
+
+			if (!rs.next())
+				throw new UserNotFoundException("User not present !");
+			else {
+				LocalDateTime localDateTime = LocalDateTime.now();
+				System.out.println(localDateTime.toString());
+				Date date = java.sql.Date.valueOf(localDateTime.toLocalDate());
+				Time time = java.sql.Time.valueOf(localDateTime.toLocalTime());
+				PreparedStatement pst = conn
+						.prepareStatement("update user set logindate = ?, logintime = ? where userId = ?");
+				pst.setDate(1, date);
+				pst.setObject(2, time);
+				pst.setInt(3, per.getUserId());
+
+				int count = pst.executeUpdate();
+
+				if (count == 1) {
+					return;
+				}
+			}
+		} catch (SQLException e) {
+			throw new UserNotFoundException("No such User found !");
+		}
+	}
 }
