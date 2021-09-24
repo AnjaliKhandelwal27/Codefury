@@ -21,33 +21,39 @@ import com.demo.exceptions.userExceptions.EmailAlreadyExistsException;
 import com.demo.exceptions.userExceptions.UserNotFoundException;
 
 public class UserDaoImpl implements UserDao {
-
+   // apart from the table given in pdf loginDate and loginTime has been added and telephone is made varchar(10)
 	@Override
-	public User registerUser(User per) throws EmailAlreadyExistsException {
+	public int registerUser(User per) throws EmailAlreadyExistsException {
 		try {
 			Connection conn = DBUtil.getConnConnection();
 
 			PreparedStatement pst = conn.prepareStatement(
-					"insert into user(userName, userRole, userTelephone, userEmail, userPassword) values(?,?,?,?,?)");
+					"insert into user(userName, userRole, userTelephone, userEmail, userPassword,LoginDate,LoginTime) values(?,?,?,?,?,?,?)");
 			pst.setString(1, per.getUserName());
 			pst.setString(2, per.getUserRole());
 			pst.setString(3, per.getUserTelephone());
 			pst.setString(4, per.getUserEmail());
 			pst.setString(5, per.getUserPassword());
+			LocalDateTime localDateTime = LocalDateTime.now();
+			System.out.println(localDateTime.toString());
+			Date date = java.sql.Date.valueOf(localDateTime.toLocalDate());
+			Time time = java.sql.Time.valueOf(localDateTime.toLocalTime());
+			pst.setDate(6, date);
+			pst.setTime(7, time);
 			int count = pst.executeUpdate();
 
 			if (count == 1) {
-				return per;
+				return 1;
 			}
 		} catch (SQLException e) {
-			throw new EmailAlreadyExistsException(
-					"Cannot add! User with email " + per.getUserEmail() + " already exists !");
+			throw new EmailAlreadyExistsException("Cannot add! User with email " + per.getUserEmail() + " already exists !");
+		//	e.printStackTrace();
 		}
-		return null;
+		return 0;
 	}
 
 	@Override
-	public User loginUser(String email, String pswd) throws UserNotFoundException {
+	public int loginUser(String email, String pswd) throws UserNotFoundException {
 		User user = null;
 		try {
 			Connection conn = DBUtil.getConnConnection();
@@ -65,10 +71,11 @@ public class UserDaoImpl implements UserDao {
 					updateUserLoginDateTime(user);
 				}
 			}
+			return 1;
 		} catch (SQLException e) {
 			throw new UserNotFoundException("No such user found !");
 		}
-		return user;
+		
 	}
 
 	@Override

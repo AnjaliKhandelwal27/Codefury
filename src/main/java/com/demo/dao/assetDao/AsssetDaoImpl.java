@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.demo.beans.Asset;
 import com.demo.beans.User;
+import com.demo.dbutil.DBUtil;
 import com.demo.exceptions.assetExceptions.AssetNotFoundException;
 
 /* 
@@ -22,7 +23,7 @@ import com.demo.exceptions.assetExceptions.AssetNotFoundException;
  * new Asset("Lenevo","Laptop","Its an dell laptop",LocalDate.of(2021,9,12),1,14,25,10);
  * */
 
-public class AssetDaoImpl implements AssestDaoIntf {
+public class AsssetDaoImpl implements AssetDaoIntf {
 
 	static Connection conn=null;
 	static PreparedStatement pinsert;
@@ -34,7 +35,7 @@ public class AssetDaoImpl implements AssestDaoIntf {
 	static {
 		
 		try {
-			conn = ConnectionFactory.getDBConnection();
+			conn = DBUtil.getConnConnection();
 			pinsert=conn.prepareStatement("Insert into Asset ( assetName,assetType,assetDescription,assetDateAdded,assetAvailability,assetLendingPeriod,"
 					+ "assetLateReturnFee,assetBannedDays) values(?,?,?,?,?,?,?,?)");
 			pselectAll=conn.prepareStatement("Select * from Asset");
@@ -53,7 +54,7 @@ public class AssetDaoImpl implements AssestDaoIntf {
 	
 	// for adding asset
 	@Override
-	public  void addAsset(Asset a) throws SQLException {
+	public  int addAsset(Asset a) throws SQLException {
 
 		//used LocalDate to create the date in asset class
 		// for database java.sql.date is used
@@ -72,6 +73,7 @@ public class AssetDaoImpl implements AssestDaoIntf {
 
 			if (i > 0)
 				System.out.println("Insert successful");
+			return i;
 
 		
 
@@ -92,11 +94,11 @@ public class AssetDaoImpl implements AssestDaoIntf {
 			if (rs.next()) {
 				LocalDate date=rs.getDate(5).toLocalDate();
 				a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4), date, rs.getInt(6),
-						rs.getInt(7), rs.getInt(8), rs.getInt(9));
+						rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 				alist.add(a);
 				while (rs.next()) {
 					a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4), date, rs.getInt(6),
-							rs.getInt(7), rs.getInt(8), rs.getInt(9));
+							rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 					alist.add(a);
 
 				}
@@ -121,12 +123,12 @@ public class AssetDaoImpl implements AssestDaoIntf {
 			if (rs.next()) {
 				LocalDate date=rs.getDate(5).toLocalDate();
 				a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4), date, rs.getInt(6),
-						rs.getInt(7), rs.getInt(8), rs.getInt(9));
+						rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 				alist.add(a);
 				while (rs.next()) {
 
 					a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4), date, rs.getInt(6),
-							rs.getInt(7), rs.getInt(8), rs.getInt(9));
+							rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 					alist.add(a);
 				}
 			} else
@@ -151,12 +153,12 @@ public class AssetDaoImpl implements AssestDaoIntf {
 			if (rs.next()) {
 				LocalDate date=rs.getDate(5).toLocalDate();
 				a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4), date, rs.getInt(6),
-						rs.getInt(7), rs.getInt(8), rs.getInt(9));
+						rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 				alist.add(a);
 				while (rs.next()) {
 
 					a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4), date, rs.getInt(6),
-							rs.getInt(7), rs.getInt(8), rs.getInt(9));
+							rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 					alist.add(a);
 				}
 			} else
@@ -181,12 +183,12 @@ public class AssetDaoImpl implements AssestDaoIntf {
 			if (rs.next()) {
 				LocalDate objdate=rs.getDate(5).toLocalDate();
 				a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4), objdate, rs.getInt(6),
-						rs.getInt(7), rs.getInt(8), rs.getInt(9));
+						rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 				alist.add(a);
 				while (rs.next()) {
 
 					a = new Asset(rs.getString(2), rs.getString(3), rs.getString(4),objdate, rs.getInt(6),
-							rs.getInt(7), rs.getInt(8), rs.getInt(9));
+							rs.getInt(7), rs.getInt(8), rs.getInt(9),rs.getBoolean(10));
 					alist.add(a);
 				}
 			} else

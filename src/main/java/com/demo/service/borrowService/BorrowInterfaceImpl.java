@@ -1,58 +1,75 @@
 package com.demo.service.borrowService;
 
 import java.sql.Date;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 
+import com.demo.beans.Borrower;
 import com.demo.beans.User;
 import com.demo.dao.borrowDao.BorrowDao;
 import com.demo.dao.borrowDao.BorrowDaoImpl;
+import com.demo.exceptions.assetExceptions.AssetNotFoundException;
 import com.demo.exceptions.borrowExceptions.BorrowerNotFoundException;
 
 public class BorrowInterfaceImpl implements BorrowInterface {
 	
 	BorrowDao dao;
-	    BorrowInterfaceImpl(){
+	    public BorrowInterfaceImpl(){
 	    	dao=new BorrowDaoImpl();
 	    }
 
 	@Override
-	public User[] getAllborrowers() throws BorrowerNotFoundException {
-		User[] users=dao.getAllborrowers();
+	public List<Borrower> getAllborrowers() throws BorrowerNotFoundException {
+		List<Borrower> users=dao.getAllborrowers();
 		return users;
 	}
 
 	@Override
-	public User getBorrowerById(int id) throws BorrowerNotFoundException {
-		User user=dao.getBorrowerById(id);
+	public Borrower getBorrowerById(int id) throws BorrowerNotFoundException {
+		Borrower user=dao.getBorrowerById(id);
 		return user;
 	}
 
 	@Override
-	public User getBorowerByName(String name) throws BorrowerNotFoundException {
-		User user=dao.getBorowerByName(name);
-		return user;
+	public List<Borrower> getBorowerByName(String name) throws BorrowerNotFoundException {
+		List<Borrower>users=dao.getBorowerByName(name);
+		return users;
 	}
 
 	@Override
-	public User getBorowerByDate(Date date) throws BorrowerNotFoundException {
-		User user=dao.getBorowerByDate(date);
-		return user;
+	public List<Borrower> getBorowerByDate(LocalDate date) throws BorrowerNotFoundException {
+		List<Borrower> borrowers=dao.getBorowerByDate(date);
+		return borrowers;
 	}
 
 	@Override
-	public User getBorowerByCategory(String category) throws BorrowerNotFoundException {
-		User user=dao.getBorowerByCategory(category);
-		return user;
+	public List<Borrower> getBorowerByCategory(String category) throws BorrowerNotFoundException {
+		List<Borrower>borrowers=dao.getBorowerByCategory(category);
+		return borrowers;
 	}
 
 	@Override
-	public int sendMessage(int borrowerId) {
-		int status =dao.sendMessage(borrowerId);
+	public int sendMessage(int borrowerId,String message) {
+		int status =dao.sendMessage(borrowerId,message);
 		return status;
 	}
 
 	@Override
 	public int returnAsset(int borrowerId, int assetId) {
 		int status=dao.returnAsset(borrowerId, assetId);
+		return status;
+	}
+
+	@Override
+	public int issueAsset(User user, String category) throws AssetNotFoundException {
+		int status;
+		try {
+			status = dao.issueAsset(user, category);
+		} catch (AssetNotFoundException | SQLException e) {
+			throw new AssetNotFoundException("Asset not found");
+			//e.printStackTrace();
+		}
 		return status;
 	}
 

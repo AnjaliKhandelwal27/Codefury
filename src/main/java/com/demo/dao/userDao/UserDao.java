@@ -8,9 +8,9 @@ import com.demo.exceptions.userExceptions.UserNotFoundException;
 
 public interface UserDao {
 
-	public User loginUser(String unmae, String pswd) throws UserNotFoundException;
+	public int loginUser(String unmae, String pswd) throws UserNotFoundException;
 
-	public User registerUser(User u) throws EmailAlreadyExistsException;
+	public int registerUser(User u) throws EmailAlreadyExistsException;
 
 	public int importUser(String path) throws Exception;
 

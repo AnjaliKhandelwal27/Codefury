@@ -1,6 +1,8 @@
 package com.demo.service.assetService;
 
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
 
 import com.demo.beans.Asset;
 import com.demo.beans.User;
@@ -10,26 +12,18 @@ import com.demo.exceptions.assetExceptions.AssetNotFoundException;
 public interface AssetInterface {
 	
 	// method that will enable admin to add asset
-	public int addAsset(Asset a);
+	public int addAsset(Asset a) throws SQLException;
 	
 	// method that will search an IT asset by name
-	public Asset searchAssetByName(String name) throws AssetNotFoundException;
+	public List<Asset> searchAssetByName(String name) throws AssetNotFoundException, SQLException;
 	
 	// method that will search an IT asset by date
-	public Asset searchAssetByDate(Date date) throws AssetNotFoundException;
+	public List<Asset> searchAssetByDate(String date) throws AssetNotFoundException, SQLException;
 	
 	// method that will search an It asset by category
-	public Asset searchAssetByCategory(String category) throws AssetNotFoundException;
-	
-	// method that will take user and Asset data as an input and issue an asset
-	public int issueAsset(User user,Asset asset) throws AssetNotFoundException;
-	
+	public List<Asset> searchAssetByCategory(String category) throws AssetNotFoundException, SQLException;
 	// method to getAllAssets 
-	public Asset[] getAllAssets();
-	
-	// method that enable admin to add an asset
-	public int AddAssetAdmin(Asset a);
-	
+	public List<Asset> getAllAssets() throws AssetNotFoundException, SQLException;
 	
 	
 }
